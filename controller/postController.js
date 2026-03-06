@@ -2,7 +2,10 @@ import post from "../models/postSchema.js";
 
 export const createPost = async(req,res) => {
     try {
-        const { caption, image, userId } = req.body;
+        const { caption } = req.body;
+        const image = req.file.filename;
+        const userId =  req.user.id;
+        console.log(userId)
         const addData = await post.create({
             caption: caption,
             image: image,

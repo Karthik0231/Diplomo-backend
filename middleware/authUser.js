@@ -10,11 +10,11 @@ const authUser = async(req, res, next) =>{
                 message:"Token required"
             })
         }
-
-        const decoded = await jwt.verify(token,SECRETKEY) // decoding the token and verifying it with secret key
+        const decoded = jwt.verify(token,SECRETKEY) // decoding the token and verifying it with secret key
         req.user = decoded   // attaching the decoded user data to the request object for further use
         next()
     } catch (error) {
+        console.log(error)
         res.status(400).json({
             success: false,
             message:"Token needed"
